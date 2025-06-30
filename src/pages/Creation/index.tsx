@@ -7,9 +7,12 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomNavigation from '../../components/BottomNavigation';
 
 const Index = () => {
+  const insets = useSafeAreaInsets();
 
   const handleAddStoryMachine = () => {
     // TODO: 实现添加故事机功能
@@ -23,43 +26,49 @@ const Index = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#4A9EFF" />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       
-      {/* 头部渐变背景 */}
-      <View style={styles.header}>
-        <Text style={styles.title}>{'111'}</Text>
-      </View>
-
-
-      {/* 主要内容区域 */}
-      <View style={styles.content}>
-        {/* 机器人图标 */}
-        <View style={styles.robotContainer}>
-          <View style={styles.robotCard}>
-            {/* <Image
-              source={require('../../../src/img/story-machine@2x.png')}
-              style={styles.robotImage}
-              resizeMode="contain"
-            /> */}
-          </View>
+      {/* 渐变背景容器 */}
+      <LinearGradient
+        colors={['#1EAAFD', '#F6F7FB']}
+        style={styles.gradientContainer}
+        locations={[0, 1]}
+      >
+        {/* 头部标题 */}
+        <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
+          <Text style={styles.title}>{"Let's start your plush\ntoy design!"}</Text>
         </View>
 
-        {/* 提示文字 */}
-        <Text style={styles.description}>
-          {'333'}
-        </Text>
+        {/* 主要内容区域 */}
+        <View style={styles.content}>
+          {/* 机器人卡片 */}
+          <View style={styles.robotContainer}>
+            <View style={styles.robotCard}>
+              {/* <Image
+                source={require('../../img/story-machine@2x.png')}
+                style={styles.robotImage}
+                resizeMode="contain"
+              /> */}
+            </View>
+          </View>
 
-        {/* 添加按钮 */}
-        <TouchableOpacity 
-          style={styles.addButton}
-          onPress={handleAddStoryMachine}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.addButtonText}>
-            {('444')}
+          {/* 提示文字 */}
+          <Text style={styles.description}>
+            {'还没有故事机，快添加一个吧！'}
           </Text>
-        </TouchableOpacity>
-      </View>
+
+          {/* 添加按钮 */}
+          <TouchableOpacity 
+            style={styles.addButton}
+            onPress={handleAddStoryMachine}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.addButtonText}>
+              {'添加故事机'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
 
       {/* 底部导航栏 */}
       <BottomNavigation 
@@ -73,65 +82,65 @@ const Index = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#F6F7FB',
+  },
+  gradientContainer: {
+    flex: 1,
   },
   header: {
-    backgroundColor: '#4A9EFF',
-    paddingHorizontal: 20,
-    paddingTop: 60, // 增加顶部间距以适应状态栏
-    paddingBottom: 30,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    paddingBottom: 20,
+    alignItems: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#FFFFFF',
     textAlign: 'center',
-    lineHeight: 32,
+    lineHeight: 36,
   },
   content: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
   },
   robotContainer: {
-    marginBottom: 40,
+    marginBottom: 32,
   },
   robotCard: {
-    width: 200,
-    height: 200,
+    width: 343,
+    height: 270,
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
+    shadowColor: 'rgba(43, 43, 43, 0.05)',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 2,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowOpacity: 1,
+    shadowRadius: 4,
     elevation: 4,
   },
   robotImage: {
-    width: 120,
-    height: 120,
+    width: 160,
+    height: 160,
   },
   description: {
     fontSize: 16,
     color: '#666666',
     textAlign: 'center',
-    marginBottom: 40,
+    marginBottom: 32,
     lineHeight: 24,
+    marginTop: 24,
   },
   addButton: {
-    backgroundColor: '#4A9EFF',
-    paddingHorizontal: 40,
+    backgroundColor: '#1EAAFD',
+    paddingHorizontal: 48,
     paddingVertical: 16,
     borderRadius: 25,
-    shadowColor: '#4A9EFF',
+    shadowColor: '#1EAAFD',
     shadowOffset: {
       width: 0,
       height: 4,
