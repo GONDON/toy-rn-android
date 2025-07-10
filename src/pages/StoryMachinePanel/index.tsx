@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
   StatusBar,
-  ImageBackground,
+  ScrollView,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -36,7 +36,7 @@ const StoryMachinePanel = () => {
       <View style={{ flex: 1 }}>
         {!isSleepTab && (
           <Image
-            source={require('../../img/profile-avatar-background.png')}
+            source={require('../../img/bg_setting.png')}
             style={StyleSheet.absoluteFillObject}
             resizeMode="cover"
           />
@@ -61,50 +61,80 @@ const StoryMachinePanel = () => {
         </View>
 
         {/* 内容区域 */}
-        {activeTab === 'settings' ? <SettingsPanel /> : <SleepPanel />}
+        {activeTab === 'settings' ? (
+          <ScrollView
+            style={{ flex: 1 }}
+            contentContainerStyle={{ paddingBottom: 100 }}
+            showsVerticalScrollIndicator={false}
+          >
+            <SettingsPanel />
+          </ScrollView>
+        ) : (
+          <SleepPanel />
+        )}
 
         {/* 底部导航栏 */}
         <View style={[styles.bottomNavigation, isSleepTab && styles.bottomNavigationDark]}>
           <TouchableOpacity
-            style={[
-              styles.tabButton,
-              activeTab === 'settings' && styles.activeTabButton,
-              isSleepTab && activeTab === 'settings' && styles.activeTabButtonDark,
-            ]}
+            style={[styles.tabButton, activeTab === 'settings' && styles.activeTabButton]}
             onPress={() => handleTabPress('settings')}
             activeOpacity={0.7}
           >
             <Image
-              source={require('../../img/settings.png')}
-              style={styles.tabIcon}
+              source={
+                isSleepTab
+                  ? require('../../img/settings-icon.png')
+                  : require('../../img/settings-icon.png')
+              }
+              style={[
+                styles.tabIcon,
+                activeTab === 'settings'
+                  ? styles.activeTabIcon
+                  : { tintColor: isSleepTab ? '#FFFFFF' : '#000000' },
+              ]}
             />
-            <Text style={[
-              styles.tabLabel,
-              isSleepTab && styles.tabLabelDark,
-              activeTab === 'settings' && styles.activeTabLabel,
-              isSleepTab && activeTab === 'settings' && styles.activeTabLabelDark,
-            ]}>设置</Text>
+            <Text
+              style={[
+                styles.tabLabel,
+                activeTab === 'settings'
+                  ? styles.activeTabLabel
+                  : isSleepTab
+                  ? styles.inactiveTabLabelDark
+                  : styles.inactiveTabLabelLight,
+              ]}
+            >
+              设置
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[
-              styles.tabButton,
-              activeTab === 'sleep' && styles.activeTabButton,
-              isSleepTab && activeTab === 'sleep' && styles.activeTabButtonDark,
-            ]}
+            style={[styles.tabButton, activeTab === 'sleep' && styles.activeTabButton]}
             onPress={() => handleTabPress('sleep')}
             activeOpacity={0.7}
           >
             <Image
-              source={require('../../img/sleep.png')}
-              style={styles.tabIcon}
+              source={
+               isSleepTab
+                  ? require('../../img/sleep-icon-light.png')
+                  : require('../../img/sleep-icon-dark.png')
+              }
+              style={[
+                styles.tabIcon,
+                activeTab === 'sleep' && styles.activeTabIcon,
+              ]}
             />
-            <Text style={[
-              styles.tabLabel,
-              isSleepTab && styles.tabLabelDark,
-              activeTab === 'sleep' && styles.activeTabLabel,
-              isSleepTab && activeTab === 'sleep' && styles.activeTabLabelDark,
-            ]}>睡眠</Text>
+            <Text
+              style={[
+                styles.tabLabel,
+                activeTab === 'sleep'
+                  ? styles.activeTabLabel
+                  : isSleepTab
+                  ? styles.inactiveTabLabelDark
+                  : styles.inactiveTabLabelLight,
+              ]}
+            >
+              哄睡
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -150,50 +180,55 @@ const styles = StyleSheet.create({
   },
   bottomNavigation: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     backgroundColor: '#FFFFFF',
-    paddingBottom: 20,
-    paddingHorizontal: 30,
-    borderTopWidth: 1,
-    borderTopColor: '#E5E5E5',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    paddingBottom: 30,
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   },
   bottomNavigationDark: {
-    backgroundColor: '#000000',
-    borderTopColor: '#222',
+    backgroundColor: '#1C1C1E',
+    borderTopColor: 'transparent',
   },
   tabButton: {
-    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 12,
-    borderRadius: 8,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+    flex: 1,
+    marginHorizontal: 5,
   },
   activeTabButton: {
-    backgroundColor: '#F6F7FB',
-  },
-  activeTabButtonDark: {
-    backgroundColor: '#2C2C2E',
+    backgroundColor: '#007AFF',
   },
   tabIcon: {
     width: 24,
     height: 24,
-    marginBottom: 4,
+    marginRight: 8,
+  },
+  activeTabIcon: {
+    tintColor: '#FFFFFF',
   },
   tabLabel: {
-    fontSize: 14,
-    color: '#666666',
-  },
-  tabLabelDark: {
-    color: '#888',
+    fontSize: 17,
+    fontWeight: '600',
   },
   activeTabLabel: {
-    color: '#1EAAFD',
-    fontWeight: '500',
-  },
-  activeTabLabelDark: {
     color: '#FFFFFF',
+  },
+  inactiveTabLabelLight: {
+    color: '#000000',
+  },
+  inactiveTabLabelDark: {
+    color: '#ffffff',
   },
 });
 
