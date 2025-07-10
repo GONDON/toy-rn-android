@@ -1,3 +1,10 @@
+/*
+ * @LastEditors: jizai jizai.zhu@tuya.com
+ * @Date: 2025-06-22 16:33:33
+ * @LastEditTime: 2025-07-02 19:54:57
+ * @FilePath: /demoapp/App.tsx
+ * @Description: 
+ */
 // In App.js in a new project
 
 import * as React from 'react';
@@ -6,12 +13,26 @@ import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Creation from './src/pages/Creation';
-
+import AddDoll from './src/pages/AddDoll';
+import StoryMachinePanel from './src/pages/StoryMachinePanel';
 
 const RootStack = createNativeStackNavigator({
+  initialRouteName: 'StoryMachinePanel',
   screens: {
     Home: {
       screen: Creation,
+      options: {
+        headerShown: false,
+      },
+    },
+    AddDoll: {
+      screen: AddDoll,
+      options: {
+        headerShown: false,
+      },
+    },
+    StoryMachinePanel: {
+      screen: StoryMachinePanel,
       options: {
         headerShown: false,
       },
