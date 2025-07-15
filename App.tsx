@@ -1,7 +1,7 @@
 /*
  * @LastEditors: jizai jizai.zhu@tuya.com
  * @Date: 2025-06-22 16:33:33
- * @LastEditTime: 2025-07-02 19:54:57
+ * @LastEditTime: 2025-07-15 17:03:05
  * @FilePath: /demoapp/App.tsx
  * @Description: 
  */
@@ -15,9 +15,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Creation from './src/pages/Creation';
 import AddDoll from './src/pages/AddDoll';
 import StoryMachinePanel from './src/pages/StoryMachinePanel';
+import DollPanel from './src/pages/DollPanel';
 
 const RootStack = createNativeStackNavigator({
-  initialRouteName: 'StoryMachinePanel',
+  initialRouteName: 'DollPanel',
   screens: {
     Home: {
       screen: Creation,
@@ -33,6 +34,12 @@ const RootStack = createNativeStackNavigator({
     },
     StoryMachinePanel: {
       screen: StoryMachinePanel,
+      options: {
+        headerShown: false,
+      },
+    },
+    DollPanel: {
+      screen: DollPanel,
       options: {
         headerShown: false,
       },

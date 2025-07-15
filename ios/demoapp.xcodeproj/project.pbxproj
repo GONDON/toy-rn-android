@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88262EBC2E267EE80044FD51 /* TuyaApiBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 88262EBB2E267EE80044FD51 /* TuyaApiBridge.m */; };
 		CD97CC7277E4D22353AA3E01 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D71FEB7EF15B44A693837F /* libPods-demoapp.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		3928EA146054A8BA06D771FF /* Pods-demoapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.debug.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.debug.xcconfig"; sourceTree = "<group>"; };
 		8381959973146C5D950F627B /* Pods-demoapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.release.xcconfig"; path = "Target Support Files/Pods-demoapp/Pods-demoapp.release.xcconfig"; sourceTree = "<group>"; };
+		88262EBA2E267EE80044FD51 /* TuyaApiBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaApiBridge.h; sourceTree = "<group>"; };
+		88262EBB2E267EE80044FD51 /* TuyaApiBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaApiBridge.m; sourceTree = "<group>"; };
 		888913092E02C0AE0049F60A /* demoapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = demoapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		888913242E02C0B00049F60A /* demoappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8889132E2E02C0B00049F60A /* demoappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +124,8 @@
 		888913002E02C0AE0049F60A = {
 			isa = PBXGroup;
 			children = (
+				88262EBA2E267EE80044FD51 /* TuyaApiBridge.h */,
+				88262EBB2E267EE80044FD51 /* TuyaApiBridge.m */,
 				888913812E02C2E20049F60A /* PrefixHeader.pch */,
 				8889130B2E02C0AE0049F60A /* demoapp */,
 				888913272E02C0B00049F60A /* demoappTests */,
@@ -357,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88262EBC2E267EE80044FD51 /* TuyaApiBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
