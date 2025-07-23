@@ -8,17 +8,16 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Creation from './src/pages/Creation';
+import Creation from './src/pages/Creation/index';
 import AddDoll from './src/pages/AddDoll';
 import StoryMachinePanel from './src/pages/StoryMachinePanel';
 import DollPanel from './src/pages/DollPanel';
 
-const RootStack = createNativeStackNavigator({
-  initialRouteName: 'DollPanel',
+const createRootStack = (initialRoute: string = 'DollPanel') => createNativeStackNavigator({
+  initialRouteName: initialRoute,
   screens: {
     Home: {
       screen: Creation,
@@ -47,9 +46,14 @@ const RootStack = createNativeStackNavigator({
   },
 });
 
-const Navigation = createStaticNavigation(RootStack);
+export default function App(props: any) {
+  console.log('App initial props:', props);
 
-export default function App() {
+  // 根据传入的 sourceTab 参数决定初始路由
+  const initialRoute = props?.sourceTab === 'creation' ? 'Home' : 'DollPanel';
+  const RootStack = createRootStack(initialRoute);
+  const Navigation = createStaticNavigation(RootStack);
+
   return (
     <SafeAreaProvider>
       <Navigation />

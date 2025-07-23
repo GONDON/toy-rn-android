@@ -1,2 +1,10 @@
+// 此处配置用于自动链接第三方原生库的 React Native Gradle 插件
+pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+// 如果使用 .gradle.kts 文件:
+// extensions.configure<com.facebook.react.ReactSettingsExtension> { autolinkLibrariesFromCommand() }
+includeBuild("../node_modules/@react-native/gradle-plugin")
+
 rootProject.name = "TelpanpalApp"
 include ':app'

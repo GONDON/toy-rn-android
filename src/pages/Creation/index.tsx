@@ -8,20 +8,27 @@ import {
   StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import BottomNavigation from '../../components/BottomNavigation';
-import type { RootStackParamList } from '../../types/navigation';
 
 // 定义状态类型
 type EmptyStateType = 'no-story-machine' | 'no-doll';
 
-const Index = () => {
+const Index = (props: any) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
-  
+
   // 控制显示状态：'no-story-machine' 或 'no-doll'
   const [emptyState, setEmptyState] = React.useState<EmptyStateType>('no-doll');
+
+  // 检查是否从Android传递了参数
+  React.useEffect(() => {
+    console.log('Creation component props:', props);
+    if (props?.sourceTab) {
+      console.log('Launched from tab:', props.sourceTab);
+    }
+  }, [props]);
 
   const handleAddStoryMachine = () => {
     // TODO: 实现添加故事机功能
